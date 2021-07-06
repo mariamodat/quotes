@@ -18,22 +18,7 @@ public class App {
 
   public static void main(String[] args) throws IOException {
 
-//      try {
 //
-//        Gson gson = new Gson();
-//        // convert JSON string to User object
-//        Reader reader = Files.newBufferedReader(Paths.get("recentquotes.json"));
-//        // here we will convert  Json into file :
-//        Map<?, ?> map = gson.fromJson(reader, Map.class);
-//        // and then :
-//        for (Map.Entry<?, ?> entry : map.entrySet()) {
-//
-//          System.out.println(entry.getKey() + "=" + entry.getValue());
-//        }
-//      }catch (Exception ex) {
-//        ex.printStackTrace();
-//      }
-
    readJsonFile();
   }
 
@@ -41,19 +26,16 @@ public class App {
   public static void readJsonFile() throws IOException {
     String path="recentquotes.json";
     BufferedReader  reader = Files.newBufferedReader(Paths.get("C:\\Users\\maria\\Desktop\\testJava\\quotes\\app\\src\\main\\resources\\recentquotes.json"));
-//    String output = "";
-//    StringBuilder stringBuilder = new StringBuilder();
 //
-//    while((output = reader.readLine()) != null){
-//      stringBuilder.append(output);
-//    }
 //
-//    return stringBuilder.toString();
+    // make a List of type Quotes then
+    //convert JSON array to list of users
     List<Quotes> users = new Gson().fromJson(reader, new TypeToken<List<Quotes>>() {}.getType());
+    // select a random number of the indexes of the list and pick one:
     Random rand = new Random();
     System.out.println(users.get(rand.nextInt(users.size())));
 
-
+    // if we want to print it all :
 //    users.forEach(System.out::println);
     reader.close();
   }
