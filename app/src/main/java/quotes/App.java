@@ -8,18 +8,24 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
 public class App {
+  private static  final String GET_URL="https://favqs.com/api/qotd";
 
 
   public static void main(String[] args) throws IOException {
 
 //
-   readJsonFile();
+//   readJsonFile();
+//   Connections urlConnection = new Connections();
+    requestGet();
   }
 
 
@@ -38,6 +44,38 @@ public class App {
     // if we want to print it all :
 //    users.forEach(System.out::println);
     reader.close();
+  }
+  public static void requestGet() throws IOException {
+
+    URL obj = new URL(GET_URL);
+    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    // set the connection time out :
+    con.setConnectTimeout(5000);
+    con.setReadTimeout(5000);
+    // set a GET request :
+    con.setRequestMethod("GET");
+    int responseCode = con.getResponseCode();
+    // check if the response is OK 200 :
+    if (responseCode==HttpURLConnection.HTTP_OK){
+      BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+// read the data from the URL request :
+      String data =in.readLine();
+      System.out.println("the data has been read :  "+data);
+      // close the connection :
+      in.close();
+      // convert JSON format :
+      Gson gson = new Gson();
+      webQuotes quoteee = gson.fromJson(data, webQuotes.class);
+//
+      System.out.println("all quotes : "+quoteee);
+//      System.out.println("the Body of the Quote : >>> " + quoteee.getBody());
+//      System.out.println(">>>>>>>>>>>>>>>>>: >>> " + quoteee);
+    }
+
+
+
+//    System.out.println(con);
+
   }
 
   }
