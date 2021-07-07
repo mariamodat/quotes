@@ -67,8 +67,8 @@ public class App {
       Gson gson = new Gson();
       webQuotes quoteee = gson.fromJson(data, webQuotes.class);
 //
-      System.out.println("all quotes : "+quoteee);
-//      System.out.println("the Body of the Quote : >>> " + quoteee.getBody());
+      System.out.println("all quotes : "+quoteee.quote.body);
+
 //      System.out.println(">>>>>>>>>>>>>>>>>: >>> " + quoteee);
     }
 

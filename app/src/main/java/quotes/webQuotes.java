@@ -2,35 +2,29 @@ package quotes;
 
 public class webQuotes {
   public String qotd_date;
-  public Object quote ;
+  public quotesData quote ;
 
 
 
-  @Override
-  public String toString() {
-    return "webQuotes{" +
-      "qotd_date='" + qotd_date + '\'' +
-      ", quote=" + quote +
-      '}';
-  }
 
-  public  class quotesData{
+
+  public static class quotesData{
     public String body;
+    public String author_permalink;
 
     public quotesData(String body) {
       this.body = body;
+    }
+
+    public String getAuthor_permalink() {
+      return author_permalink;
     }
 
     public String getBody() {
       return body;
     }
 
-    @Override
-    public String toString() {
-      return "quotesData{" +
-        "body='" + body + '\'' +
-        '}';
-    }
+
   }
 
 
