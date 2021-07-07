@@ -24,7 +24,7 @@ public class App {
 
 
   public static void readJsonFile() throws IOException {
-    String path="recentquotes.json";
+
     BufferedReader  reader = Files.newBufferedReader(Paths.get("C:\\Users\\maria\\Desktop\\testJava\\quotes\\app\\src\\main\\resources\\recentquotes.json"));
 //
 //
